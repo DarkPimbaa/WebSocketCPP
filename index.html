@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        #message-form {
+            display: flex;
+            gap: 10px;
+        }
+        #message-input {
+            flex-grow: 1;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testezin do web soca soca</h1>
+    <div id="messages"></div>
+    <form id="message-form">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        const messagesDiv = document.getElementById('messages');
+        const messageForm = document.getElementById('message-form');
+        const messageInput = document.getElementById('message-input');
+
+        // Create WebSocket connection
+        const socket = new WebSocket('ws://localhost:8080');
+
+        // Connection opened
+        socket.addEventListener('open', (event) => {
+            appendMessage('Opa, conectei!');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', (event) => {
+            appendMessage(`Server: ${event.data}`);
+        });
+
+        // Connection closed
+        socket.addEventListener('close', (event) => {
+            appendMessage('Disconnected from server');
+        });
+
+        // Handle errors
+        socket.addEventListener('error', (event) => {
+            appendMessage('Error: ' + event);
+        });
+
+        // Send message
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = messageInput.value;
+            if (message) {
+                socket.send(message);
+                appendMessage(`Tu: ${message}`);
+                messageInput.value = '';
+            }
+        });
+
+        function appendMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messagesDiv.appendChild(messageElement);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>

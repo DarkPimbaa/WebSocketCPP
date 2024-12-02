@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG  -static CMakeFiles/websocket_server.dir/main.cpp.o CMakeFiles/websocket_server.dir/websocket.cpp.o -o websocket_server  -static /usr/lib/x86_64-linux-gnu/libssl.a /usr/lib/x86_64-linux-gnu/libcrypto.a -static-libgcc -static-libstdc++ -lpthread -ldl 

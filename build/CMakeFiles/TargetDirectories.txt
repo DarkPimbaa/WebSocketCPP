@@ -1,0 +1,3 @@
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/websocket_server.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/edit_cache.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/rebuild_cache.dir

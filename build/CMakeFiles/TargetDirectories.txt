@@ -1,3 +1,9 @@
-/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/websocket_server.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/websocket_static.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/websocket_shared.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/websocket_example.dir
 /home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/edit_cache.dir
 /home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/rebuild_cache.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/list_install_components.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/install.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/install/local.dir
+/home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles/install/strip.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG -shared -Wl,-soname,libwebsocket.so -o lib/libwebsocket.so CMakeFiles/websocket_shared.dir/websocket.cpp.o  /usr/lib/x86_64-linux-gnu/libssl.a /usr/lib/x86_64-linux-gnu/libcrypto.a -lpthread 

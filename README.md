@@ -31,19 +31,50 @@ For static linking, the CMake configuration is already set up to create a standa
 
 ## Usage
 
-1. Start the WebSocket server:
-```bash
-./websocket_server
+### Including in Your Project
+
+```cpp
+#include <websocket.hpp>
 ```
 
-2. Start a local HTTP server to serve the test page:
-```bash
-python3 -m http.server 8000
+### CMake Integration
+
+Add to your CMakeLists.txt:
+
+```cmake
+find_package(OpenSSL REQUIRED)
+find_library(WEBSOCKET_LIB websocket)
+
+add_executable(your_app main.cpp)
+target_link_libraries(your_app 
+    PRIVATE 
+    ${WEBSOCKET_LIB}
+    OpenSSL::SSL 
+    OpenSSL::Crypto 
+    pthread
+)
 ```
 
-3. Open your web browser and navigate to:
-```
-http://localhost:8000/index.html
+### Basic Example
+
+```cpp
+#include <websocket.hpp>
+
+int main() {
+    // Server example
+    WebSocket server(8080);
+    server.onMessage([](const std::string& msg) {
+        std::cout << "Received: " << msg << std::endl;
+    });
+    server.start();
+
+    // Client example
+    WebSocket client("ws://localhost:8080");
+    client.connect();
+    client.send("Hello, WebSocket!");
+
+    return 0;
+}
 ```
 
 ## Project Structure

@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/carlos/Documentos/Projetos/WebSocketCPP/build/CMakeFiles /home/carlos/Documentos/Projetos/WebSocketCPP/build//CMakeFiles/progress.marks
@@ -117,24 +162,50 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named websocket_server
+# Target rules for targets named websocket_static
 
 # Build rule for target.
-websocket_server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 websocket_server
-.PHONY : websocket_server
+websocket_static: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 websocket_static
+.PHONY : websocket_static
 
 # fast build rule for target.
-websocket_server/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_server.dir/build.make CMakeFiles/websocket_server.dir/build
-.PHONY : websocket_server/fast
+websocket_static/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_static.dir/build.make CMakeFiles/websocket_static.dir/build
+.PHONY : websocket_static/fast
+
+#=============================================================================
+# Target rules for targets named websocket_shared
+
+# Build rule for target.
+websocket_shared: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 websocket_shared
+.PHONY : websocket_shared
+
+# fast build rule for target.
+websocket_shared/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_shared.dir/build.make CMakeFiles/websocket_shared.dir/build
+.PHONY : websocket_shared/fast
+
+#=============================================================================
+# Target rules for targets named websocket_example
+
+# Build rule for target.
+websocket_example: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 websocket_example
+.PHONY : websocket_example
+
+# fast build rule for target.
+websocket_example/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_example.dir/build.make CMakeFiles/websocket_example.dir/build
+.PHONY : websocket_example/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_server.dir/build.make CMakeFiles/websocket_server.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_example.dir/build.make CMakeFiles/websocket_example.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -142,7 +213,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_server.dir/build.make CMakeFiles/websocket_server.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_example.dir/build.make CMakeFiles/websocket_example.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -150,7 +221,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_server.dir/build.make CMakeFiles/websocket_server.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_example.dir/build.make CMakeFiles/websocket_example.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 websocket.o: websocket.cpp.o
@@ -158,7 +229,8 @@ websocket.o: websocket.cpp.o
 
 # target to build an object file
 websocket.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_server.dir/build.make CMakeFiles/websocket_server.dir/websocket.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_static.dir/build.make CMakeFiles/websocket_static.dir/websocket.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_shared.dir/build.make CMakeFiles/websocket_shared.dir/websocket.cpp.o
 .PHONY : websocket.cpp.o
 
 websocket.i: websocket.cpp.i
@@ -166,7 +238,8 @@ websocket.i: websocket.cpp.i
 
 # target to preprocess a source file
 websocket.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_server.dir/build.make CMakeFiles/websocket_server.dir/websocket.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_static.dir/build.make CMakeFiles/websocket_static.dir/websocket.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_shared.dir/build.make CMakeFiles/websocket_shared.dir/websocket.cpp.i
 .PHONY : websocket.cpp.i
 
 websocket.s: websocket.cpp.s
@@ -174,7 +247,8 @@ websocket.s: websocket.cpp.s
 
 # target to generate assembly for a file
 websocket.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_server.dir/build.make CMakeFiles/websocket_server.dir/websocket.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_static.dir/build.make CMakeFiles/websocket_static.dir/websocket.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/websocket_shared.dir/build.make CMakeFiles/websocket_shared.dir/websocket.cpp.s
 .PHONY : websocket.cpp.s
 
 # Help Target
@@ -184,8 +258,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... websocket_server"
+	@echo "... websocket_example"
+	@echo "... websocket_shared"
+	@echo "... websocket_static"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
